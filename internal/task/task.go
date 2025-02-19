@@ -1,6 +1,9 @@
 package task
 
-import "github.com/google/uuid"
+import (
+	"github.com/docker/go-connections/nat"
+	"github.com/google/uuid"
+)
 
 type State int
 
@@ -12,7 +15,13 @@ const (
 )
 
 type Task struct {
-	ID    uuid.UUID
-	State State
-	Name  string
+	ID            uuid.UUID
+	State         State
+	Name          string
+	Image         string
+	Memory        int
+	Disk          int
+	ExposedPorts  nat.PortSet
+	PortBindings  map[string]string
+	RestartPolicy string
 }
